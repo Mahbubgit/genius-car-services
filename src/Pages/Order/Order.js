@@ -11,7 +11,7 @@ const Order = () => {
     const navigate = useNavigate();
     useEffect(() => {
         const getOrders = async () => {
-            const email = user.email;
+            const email = user?.email;
             const url = `https://ancient-gorge-57630.herokuapp.com/order?email=${email}`;
             try {
                 const { data } = await axiosPrivate.get(url);
@@ -35,9 +35,11 @@ const Order = () => {
     // }, [])
 
     return (
-        <div>
+        <div className='w-50 mx-auto'>
             <h2>Your order: {orders.length}</h2>
-
+            {
+                orders.map(order => <div>{order.email} : {order.service}</div>)
+            }
         </div>
     );
 };
